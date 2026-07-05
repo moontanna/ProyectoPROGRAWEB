@@ -17,6 +17,19 @@ include("ManejaInventario.php");
 
 $opcion = $_POST['opcion'] ?? "";
 
+if(isset($_POST['guardar']))
+{
+    $obj = new ManejaInventario(
+        $_POST['claveProd'],
+        $_POST['nomProd'],
+        $_POST['categProd'],
+        $_POST['cantProd'],
+        $_POST['precProd']
+    );
+
+    $obj->Registrar();
+}
+
 echo '
 
 <TABLE BORDER=1 WIDTH="60%" ALIGN="CENTER">
@@ -88,13 +101,59 @@ echo '
     <TD ALIGN="CENTER">
 ';
 
-if ($opcion == "") {
-    echo "Estado: sin selección";
+if ($opcion == "")
+{
+    echo "Estado: sin selecci&oacute;n";
 }
 
-if ($opcion == "registrar") {
-    echo "AQUÍ VA: REGISTRAR PRODUCTO";
+if ($opcion == "registrar")
+{
+    echo '
+
+    <FORM METHOD="POST">
+
+    <INPUT TYPE="HIDDEN" NAME="opcion" VALUE="registrar">
+
+    <TABLE BORDER="1" ALIGN="CENTER">
+
+    <TR>
+        <TD>Clave:</TD>
+        <TD><INPUT TYPE="TEXT" NAME="claveProd"></TD>
+    </TR>
+
+    <TR>
+        <TD>Nombre:</TD>
+        <TD><INPUT TYPE="TEXT" NAME="nomProd"></TD>
+    </TR>
+
+    <TR>
+        <TD>Categor&iacute;a:</TD>
+        <TD><INPUT TYPE="TEXT" NAME="categProd"></TD>
+    </TR>
+
+    <TR>
+        <TD>Cantidad:</TD>
+        <TD><INPUT TYPE="NUMBER" NAME="cantProd"></TD>
+    </TR>
+
+    <TR>
+        <TD>Precio:</TD>
+        <TD><INPUT TYPE="TEXT" NAME="precProd"></TD>
+    </TR>
+
+    <TR>
+        <TD COLSPAN="2" ALIGN="CENTER">
+            <INPUT TYPE="SUBMIT" NAME="guardar" VALUE="Guardar">
+        </TD>
+    </TR>
+
+    </TABLE>
+
+    </FORM>
+
+    ';
 }
+
 
 if ($opcion == "consultar") {
     echo "AQUÍ VA: CONSULTAR PRODUCTO";

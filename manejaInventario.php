@@ -8,3 +8,21 @@ Hannah Kareli Herrera Mondragón
 
  PARA LAS FUNCIONES
 */
+class ManejaInventario extends Producto
+{
+    public function Registrar()
+    {
+        $consulta = "INSERT INTO productos
+        VALUES('$this->claveProd',
+               '$this->nomProd',
+               '$this->categProd',
+               '$this->cantProd',
+               '$this->precProd')";
+
+        mysqli_query($this->Link,$consulta);
+
+        echo "Producto registrado correctamente";
+    }
+}
+
+?>
