@@ -23,6 +23,15 @@ class ManejaInventario extends Producto
 
         echo "Producto registrado correctamente";
     }
+
+    public function Consultar($clave)
+    {
+        $consulta = "SELECT * FROM productos WHERE claveProd = '$clave'";
+        $resultado = mysqli_query($this->Link, $consulta);
+        return mysqli_fetch_assoc($resultado);
+    }
+
 }
+
 
 ?>

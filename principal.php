@@ -154,10 +154,47 @@ if ($opcion == "registrar")
     ';
 }
 
+    if ($opcion == "consultar") {
+    echo '
+    <FORM METHOD="POST">
+        <INPUT TYPE="HIDDEN" NAME="opcion" VALUE="consultar">
+        <TABLE BORDER="0" ALIGN="CENTER">
+            <TR>
+                <TD>Ingresa la Clave del Producto:</TD>
+                <TD><INPUT TYPE="TEXT" NAME="claveBuscar" REQUIRED></TD>
+            </TR>
+            <TR>
+                <TD COLSPAN="2" ALIGN="CENTER">
+                    <INPUT TYPE="SUBMIT" NAME="buscar" VALUE="Buscar Producto">
+                </TD>
+            </TR>
+        </TABLE>
+    </FORM>
+    ';
 
-if ($opcion == "consultar") {
-    echo "AQUÍ VA: CONSULTAR PRODUCTO";
+    if(isset($_POST['buscar'])) {
+        $obj = new ManejaInventario($_POST['claveBuscar'], "", "", "", "");
+        $prod = $obj->Consultar($_POST['claveBuscar']);
+        
+        if($prod) {
+            echo '
+            <br>
+            <TABLE BORDER="1" ALIGN="CENTER" CELLPADDING="5">
+                <TR BGCOLOR="#d6e4ff"><TH COLSPAN="2">Datos del Producto</TH></TR>
+                <TR><TD><b>Clave:</b></TD><TD>'.$prod['claveProd'].'</TD></TR>
+                <TR><TD><b>Nombre:</b></TD><TD>'.$prod['nomProd'].'</TD></TR>
+                <TR><TD><b>Categoría:</b></TD><TD>'.$prod['categProd'].'</TD></TR>
+                <TR><TD><b>Cantidad:</b></TD><TD>'.$prod['cantProd'].'</TD></TR>
+                <TR><TD><b>Precio:</b></TD><TD>$'.$prod['precProd'].'</TD></TR>
+            </TABLE>
+            ';
+        } else {
+            echo "<br><font color='red'><b>El producto con clave [".$_POST['claveBuscar']."] no existe en el inventario.</b></font>";
+        }
+    }
 }
+
+
 
 if ($opcion == "reporte") {
     echo "AQUÍ VA: REPORTE POR CATEGORÍA";
