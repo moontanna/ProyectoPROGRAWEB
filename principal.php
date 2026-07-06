@@ -197,7 +197,7 @@ if ($opcion == "registrar")
 
 
 if ($opcion == "reporte") {
-    echo "AQUÍ VA: REPORTE POR CATEGORÍA";
+    include("reporte.php");
 }
 
 if ($opcion == "eliminar") {
