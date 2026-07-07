@@ -204,13 +204,14 @@ if ($opcion == "eliminar") {
 
     echo '
     <FORM METHOD="POST">
-    
-    Clave del producto: <INPUT TYPE="TEXT" NAME="claveEliminar">
+    <INPUT TYPE="HIDDEN" NAME="opcion" VALUE="eliminar">
 
+    Clave del producto:
+    <INPUT TYPE="TEXT" NAME="claveEliminar">
     <INPUT TYPE="SUBMIT" NAME="eliminar" VALUE="Eliminar">
-
     </FORM>
     ';
+    
 
 
     if(isset($_POST['eliminar']))
