@@ -30,6 +30,22 @@ class ManejaInventario extends Producto
         $resultado = mysqli_query($this->Link, $consulta);
         return mysqli_fetch_assoc($resultado);
     }
+    public function Eliminar($clave)
+{
+    $consulta = "DELETE FROM productos WHERE claveProd = '$clave'";
+    $resultado = mysqli_query($this->Link, $consulta);
+
+    if(mysqli_affected_rows($this->Link) > 0)
+    {
+        echo "Producto eliminado correctamente";
+    }
+    else
+    {
+        echo "El producto no existe";
+    }
+}
+
+
 
 }
 

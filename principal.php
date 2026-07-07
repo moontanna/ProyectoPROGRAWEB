@@ -201,8 +201,28 @@ if ($opcion == "reporte") {
 }
 
 if ($opcion == "eliminar") {
-    echo "AQUÍ VA: DAR DE BAJA PRODUCTO";
+
+    echo '
+    <FORM METHOD="POST">
+    
+    Clave del producto: <INPUT TYPE="TEXT" NAME="claveEliminar">
+
+    <INPUT TYPE="SUBMIT" NAME="eliminar" VALUE="Eliminar">
+
+    </FORM>
+    ';
+
+
+    if(isset($_POST['eliminar']))
+    {
+        $obj = new ManejaInventario($_POST['claveEliminar']);
+
+        $obj->Eliminar($_POST['claveEliminar']);
+    }
+
 }
+
+
 
 echo '
     </TD>
